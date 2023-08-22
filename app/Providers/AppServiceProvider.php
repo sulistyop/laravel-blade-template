@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\People;
+use App\Models\Person;
 use App\Services\SayHello;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -31,5 +33,14 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive("hello", function ($expression){
             return "<?php echo 'Hello ' . $expression; ?>";
         });
+
+        Blade::stringable(Person::class, function (Person $person){
+            return "$person->name : $person->address";
+        });
+
+        Blade::stringable(People::class, function (People $people){
+            return "$people->name : $people->address";
+        });
+
     }
 }

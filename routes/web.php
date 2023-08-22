@@ -43,3 +43,4 @@ Route::view('/each','each', [
         ],
     ]
 ]);
+
